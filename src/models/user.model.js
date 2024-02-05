@@ -55,7 +55,7 @@ const userSchema = new Schema(
 // pre hookes in mongoose used to perform some opration on data just before save in database
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
